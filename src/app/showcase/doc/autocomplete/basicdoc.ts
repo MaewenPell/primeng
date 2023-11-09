@@ -10,11 +10,8 @@ interface AutoCompleteCompleteEvent {
     selector: 'basic-doc',
     template: ` <section class="py-4">
         <app-docsectiontext [title]="title" [id]="id">
-        <p-meterGroup  [meterSegments]="meterSegments">
-         <ng-template pTemplate="item" let-item>
-                <span>{{item.value}}</span>
-                </ng-template>
-        </p-meterGroup>
+            <p-meterGroup   [label]="'test'" color="'red'" [meterSegments]="meterSegments">
+            </p-meterGroup>
             <p>
                 AutoComplete uses <i>ngModel</i> for two-way binding, requires a list of suggestions and a <i>completeMethod</i> to query for the results. The completeMethod gets the query text as <i>event.query</i> property and should update the
                 suggestions with the search results.
@@ -27,17 +24,13 @@ interface AutoCompleteCompleteEvent {
     </section>`
 })
 export class BasicDoc {
-    testVal=33
+    testVal = 33;
     meterSegments = [
         { label: 'Videos', color: 'red', value: 24 },
         { label: 'Games', color: 'green', value: 8 },
-        { label: 'System',color: 'blue', value: 12 },
-        { label: 'Image', color:'orange', value: 42 }
-      ];
-    
-
-
-
+        { label: 'System', color: 'blue', value: 12 },
+        { label: 'Image', color: 'orange', value: 42 }
+    ];
 
     @Input() id: string;
 

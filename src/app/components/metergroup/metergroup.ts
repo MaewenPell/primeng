@@ -8,7 +8,10 @@ import { PrimeTemplate } from '../api/shared';
         <div class="p-metergroup">
             <div *ngIf="value; else noValue">
                 <div class="gauge-meter w-full">
-                    <div class="gauge-segment" [style.background-color]="'red'" [style.width]="calculateWidth(value)"></div>
+                    <div class="gauge-segment border-round-xl" [style.background-color]="'red'" [style.width]="calculateWidth(value)"></div>
+                </div>
+                <div class="legend-item">
+                    <span [style.color]="color">{{ label }}</span>
                 </div>
             </div>
             <ng-template #noValue>
@@ -21,18 +24,17 @@ import { PrimeTemplate } from '../api/shared';
                         [ngClass]="{ 'first-segment': first, 'last-segment': last }"
                     ></div>
                 </div>
-                <div class="my-2">
-                    <div *ngFor="let segment of meterSegments" class="legend-item">
-                        <span class="dot" [style.background-color]="segment.color"></span>
-                        <span [style.color]="segment.color">{{ segment.label }} ({{ calculateWidth(segment.value) }})</span>
-                    </div>
-                </div>
+
+                <ng-template ngFor [ngForOf]="meterSegments" let-segment>
+                    <ng-container *ngIf="!itemTemplate">
+                        <div class="legend-item">
+                            <span class="dot" [style.background-color]="segment.color"></span>
+                            <span [style.color]="segment.color">{{ segment.label }} ({{ calculateWidth(segment.value) }})</span>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: segment }"></ng-container>
+                </ng-template>
             </ng-template>
-            
-                   <ng-container *ngIf="itemTemplate">
-                        <ng-template *ngTemplateOutlet="itemTemplate; context: { $implicit: meterSegments}"></ng-template>
-                   </ng-container>
-            
         </div>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,6 +46,8 @@ import { PrimeTemplate } from '../api/shared';
 })
 export class MeterGroup {
     @Input() value: number | undefined;
+    @Input() label: string | undefined;
+    @Input() color: string | undefined;
     @Input() meterSegments: any;
     @Input() min: number = 0;
     @Input() max: number = 128;
@@ -54,13 +58,10 @@ export class MeterGroup {
     ngAfterContentInit() {
         this.templates?.forEach((item) => {
             switch (item.getType()) {
-                case 'start':
-                    this.startTemplate = item.template;
-                    break;
                 case 'itemTemplate':
                     this.itemTemplate = item.template;
                     break;
-                    
+
                 default:
                     this.itemTemplate = item.template;
                     break;
