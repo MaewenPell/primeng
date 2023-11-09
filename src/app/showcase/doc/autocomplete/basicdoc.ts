@@ -10,7 +10,8 @@ interface AutoCompleteCompleteEvent {
     selector: 'basic-doc',
     template: ` <section class="py-4">
         <app-docsectiontext [title]="title" [id]="id">
-            <p-meterGroup   [label]="'test'" color="'red'" [meterSegments]="meterSegments">
+            <p-meterGroup   [label]="'test'" color="red" [meterSegments]="meterSegments">
+             
             </p-meterGroup>
             <p>
                 AutoComplete uses <i>ngModel</i> for two-way binding, requires a list of suggestions and a <i>completeMethod</i> to query for the results. The completeMethod gets the query text as <i>event.query</i> property and should update the

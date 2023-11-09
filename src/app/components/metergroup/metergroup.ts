@@ -8,7 +8,7 @@ import { PrimeTemplate } from '../api/shared';
         <div class="p-metergroup">
             <div *ngIf="value; else noValue">
                 <div class="gauge-meter w-full">
-                    <div class="gauge-segment border-round-xl" [style.background-color]="'red'" [style.width]="calculateWidth(value)"></div>
+                    <div class="gauge-segment border-round-xl" [style.background-color]="'#3B82F6'" [style.width]="calculateWidth(value)"></div>
                 </div>
                 <div class="legend-item">
                     <span [style.color]="color">{{ label }}</span>
