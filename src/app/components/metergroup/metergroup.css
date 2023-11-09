@@ -1,0 +1,37 @@
+
+
+.gauge-meter {
+    width: 200px;
+    height: 20px;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #334155;
+}
+
+.gauge-segment {
+    height: 100%;
+    transition: width 1s;
+}
+
+.first-segment {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.last-segment {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.gauge-segment .segment-label {
+    display: flex;
+    align-items: center;
+}
+
+.legend-item .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
