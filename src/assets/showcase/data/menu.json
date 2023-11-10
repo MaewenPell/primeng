@@ -420,6 +420,10 @@
                         {
                             "name": "Terminal",
                             "routerLink": "/terminal"
+                        },
+                        {
+                            "name": "MeterGroup",
+                            "routerLink": "/metergroup"
                         }
                     ]
                 },

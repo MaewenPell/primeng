@@ -116,7 +116,8 @@ const routes: Routes = [
             { path: 'autofocus', loadChildren: () => import('../pages/autofocus/autofocusdemo.module').then((m) => m.AutoFocusDemoModule) },
             { path: 'overlay', loadChildren: () => import('../pages/overlay/overlaydemo.module').then((m) => m.OverlayDemoModule) },
             { path: 'animateonscroll', loadChildren: () => import('../pages/animate/animateonscrolldemo.module').then((m) => m.AnimateOnScrollDemoModule) },
-            { path: 'templates', loadChildren: () => import('../pages/templates/templates.module').then((m) => m.TemplatesModule) }
+            { path: 'templates', loadChildren: () => import('../pages/templates/templates.module').then((m) => m.TemplatesModule) },
+            { path: 'metergroup', loadChildren: () => import('../pages/metergroup/metergroupdemo.module').then((m) => m.MeterGroupDemoModule) }
         ]
     },
     { path: 'notfound', loadChildren: () => import('../pages/notfound/notfound.module').then((m) => m.NotFoundModule) },

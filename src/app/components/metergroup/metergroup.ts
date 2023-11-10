@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, NgModule, ViewEncapsulation, ContentChildren, QueryList, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Output, NgModule, ViewEncapsulation, ContentChildren, QueryList, TemplateRef, EventEmitter } from '@angular/core';
 import { PrimeTemplate } from '../api/shared';
 
 @Component({
@@ -8,11 +8,16 @@ import { PrimeTemplate } from '../api/shared';
         <div class="p-metergroup">
             <div *ngIf="value; else noValue">
                 <div class="gauge-meter w-full">
-                    <div class="gauge-segment border-round-xl" [style.background-color]="'#3B82F6'" [style.width]="calculateWidth(value)"></div>
+                    <div class="gauge-segment border-round-xl" [style.background-color]="color || '#3B82F6'" [style.width]="calculateWidth(value)"></div>
                 </div>
-                <div class="legend-item">
-                    <span [style.color]="color">{{ label }}</span>
-                </div>
+
+                <ng-container *ngIf="!legendTemplate">
+                    <div class="p-metergroup-legend">
+                        <span (click)="legendClick({label,value})" class="font-medium" [style.color]="color || '#3B82F6'">{{ label }}</span>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngTemplateOutlet="legendTemplate"></ng-container>
             </div>
             <ng-template #noValue>
                 <div class="gauge-meter w-full">
@@ -26,13 +31,14 @@ import { PrimeTemplate } from '../api/shared';
                 </div>
 
                 <ng-template ngFor [ngForOf]="meterSegments" let-segment>
-                    <ng-container *ngIf="!itemTemplate">
-                        <div class="legend-item">
+                    <ng-container *ngIf="!legendTemplate">
+                        <div class="p-metergroup-legend" (click)="legendClick(segment)">
                             <span class="dot" [style.background-color]="segment.color"></span>
                             <span [style.color]="segment.color">{{ segment.label }} ({{ calculateWidth(segment.value) }})</span>
                         </div>
                     </ng-container>
-                    <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: segment }"></ng-container>
+
+                    <ng-container *ngTemplateOutlet="legendTemplate; context: { $implicit: segment }"></ng-container>
                 </ng-template>
             </ng-template>
         </div>
@@ -46,27 +52,41 @@ import { PrimeTemplate } from '../api/shared';
 })
 export class MeterGroup {
     @Input() value: number | undefined;
+
     @Input() label: string | undefined;
+
     @Input() color: string | undefined;
+
     @Input() meterSegments: any;
+
     @Input() min: number = 0;
-    @Input() max: number = 128;
+
+    @Input() max: number = 100;
+
     @Input() fixedPercentageValue: number;
+
+    @Output() legendClicked = new EventEmitter<any>();
+
     @ContentChildren(PrimeTemplate) templates: QueryList<PrimeTemplate> | undefined;
-    itemTemplate: TemplateRef<any> | undefined;
-    startTemplate: TemplateRef<any> | undefined;
+
+    legendTemplate: TemplateRef<any> | undefined;
+
     ngAfterContentInit() {
         this.templates?.forEach((item) => {
             switch (item.getType()) {
-                case 'itemTemplate':
-                    this.itemTemplate = item.template;
+                case 'legendTemplate':
+                    this.legendTemplate = item.template;
                     break;
 
                 default:
-                    this.itemTemplate = item.template;
+                    this.legendTemplate = item.template;
                     break;
             }
         });
+    }
+
+    legendClick(segment: any) {
+        this.legendClicked.emit(segment);
     }
 
     calculateWidths() {
