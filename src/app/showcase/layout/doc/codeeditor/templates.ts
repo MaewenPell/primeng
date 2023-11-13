@@ -565,6 +565,8 @@ import { AnimateModule } from 'primeng/animate';
 import { CardModule } from 'primeng/card';
 import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { MeterGroupModule } from 'primeng/metergroup';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 ${serviceImports}
 
 @NgModule({
@@ -662,6 +664,8 @@ ${serviceImports}
     TreeTableModule,
     AnimateModule,
     CardModule,
+    MeterGroupModule,
+    AnimateOnScrollModule,
     ${routerModule}],
     declarations: [ ${declarations} ],
     bootstrap: [ ${componentName} ],
