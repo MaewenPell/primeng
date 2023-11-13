@@ -5,7 +5,7 @@ import { Code } from '../../domain/code';
     selector: 'basic-doc',
     template: ` <section class="py-4">
         <app-docsectiontext [title]="title" [id]="id">
-            <p>MeterGroup requires a collection of segments as its <i>value</i>.</p>
+            <p>MeterGroup is used with the <i>value</i> and <i>label</i> properties.</p>
         </app-docsectiontext>
         <div class="card">
             <p-meterGroup [value]="value" [label]="label"></p-meterGroup>
