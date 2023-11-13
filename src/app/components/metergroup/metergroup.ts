@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, Output, NgModule, ViewEncapsulation, ContentChildren, QueryList, TemplateRef, EventEmitter } from '@angular/core';
 import { PrimeTemplate, SharedModule } from 'primeng/api';
 import { MeterGroupLegendClickEvent, Segment } from './metergroup.interface';
-
+/**
+ * MeterGroup displays a gauge meter that fills or depletes.
+ * @group Components
+ */
 @Component({
     selector: 'p-meterGroup',
     template: `
