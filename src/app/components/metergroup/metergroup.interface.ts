@@ -1,6 +1,5 @@
 import { TemplateRef } from '@angular/core';
 import { MeterGroup } from './metergroup';
-
 /**
  * MeterGroup segment item.
  * @group Interface
