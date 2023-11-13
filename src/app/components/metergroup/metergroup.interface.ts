@@ -1,18 +1,29 @@
 import { TemplateRef } from '@angular/core';
-import { ScrollerOptions } from 'primeng/api';
 import { MeterGroup } from './metergroup';
 
+/**
+ * MeterGroup segment item.
+ * @group Interface
+ */
+export interface Segment {
+    /**
+     * Label of the segment.
+     */
+    label: string;
+    /**
+     * Color of the segment.
+     */
+    color: string;
+    /**
+     * Value of the segment.
+     */
+    value: number;
+}
 /**
  * Legend click event.
  * @see {@link MeterGroup.legendClicked}
  * @group Events
  */
-
-export interface Segment {
-    label: string;
-    color: string;
-    value: number;
-}
 export interface MeterGroupLegendClickEvent {
     /**
      * Browser event.
@@ -23,16 +34,19 @@ export interface MeterGroupLegendClickEvent {
      */
     segment: Segment;
 }
-
+/**
+ * Defines valid templates in MeterGroup.
+ * @group Templates
+ */
 export interface MeterGroupTemplates {
     /**
      * Custom legend template.
-     * @param {Object} context - legend data.
+     * @param {Segment} segment - segment data.
      */
     legend(context: {
         /**
          * Legend.
          */
-        $implicit: any;
-    }): TemplateRef<{ $implicit: any }>;
+        $implicit: Segment;
+    }): TemplateRef<{ $implicit: Segment }>;
 }

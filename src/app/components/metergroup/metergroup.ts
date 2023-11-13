@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, Output, NgModule, ViewEncapsulation, ContentChildren, QueryList, TemplateRef, EventEmitter } from '@angular/core';
 import { PrimeTemplate, SharedModule } from 'primeng/api';
-import { MeterGroupLegendClickEvent } from './metergroup.interface';
+import { MeterGroupLegendClickEvent, Segment } from './metergroup.interface';
 
 @Component({
     selector: 'p-meterGroup',
@@ -71,23 +71,20 @@ export class MeterGroup {
      * @group Props 
      */
 
-    @Input() meterSegments: any;
+    @Input() meterSegments: Segment[] | undefined;
     /**
      * Minimum value of the meter.
      * @group Props
-     * @default 0
      */
     @Input() min: number = 0;
     /**
      * Maximum value of the meter.
      * @group Props
-     * @default 100
      */
     @Input() max: number = 100;
     /**
      * Specifies the number of decimal places to display in the percentage value.
      * @group Props
-     * @default 0
      */
     @Input() fixedPercentageValue: number = 0;
     /**
