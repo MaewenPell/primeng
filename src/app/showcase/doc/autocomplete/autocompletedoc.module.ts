@@ -20,9 +20,9 @@ import { ReactiveFormsDoc } from './reactiveformsdoc';
 import { FloatLabelDoc } from './floatlabeldoc';
 import { DisabledDoc } from './disableddoc';
 import { InvalidDoc } from './invaliddoc';
-import { MeterGroupModule } from 'primeng/metergroup';
+
 @NgModule({
-    imports: [CommonModule, RouterModule, AppCodeModule, FormsModule, AppDocModule, AutoCompleteModule, ReactiveFormsModule,MeterGroupModule],
+    imports: [CommonModule, RouterModule, AppCodeModule, FormsModule, AppDocModule, AutoCompleteModule, ReactiveFormsModule],
     exports: [AppDocModule],
     declarations: [ImportDoc, BasicDoc, TemplateDoc, GroupedDoc, VirtualScrollDoc, MultipleDoc, StyleDoc, AccessibilityDoc, DropdownDoc, ForceSelectionDoc, ObjectsDoc, ReactiveFormsDoc, FloatLabelDoc, DisabledDoc, InvalidDoc]
 })
