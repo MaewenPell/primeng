@@ -17,6 +17,10 @@ export interface Segment {
      * Value of the segment.
      */
     value: number;
+    /**
+     * Additional custom properties that can be added dynamically.
+     */
+    [key: string]: any;
 }
 /**
  * Legend click event.

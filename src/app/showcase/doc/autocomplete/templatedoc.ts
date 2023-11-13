@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { SelectItemGroup } from 'primeng/api';
 import { Code } from '../../domain/code';
 import { CountryService } from '../../service/countryservice';
 

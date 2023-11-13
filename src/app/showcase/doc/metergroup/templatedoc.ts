@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { Segment } from 'primeng/metergroup';
 import { Code } from '../../domain/code';
 
 @Component({
@@ -26,7 +26,7 @@ export class TemplateDoc implements OnInit {
 
     @Input() title: string;
 
-    meterSegments = [
+    meterSegments: Segment[] = [
         { label: 'Folders', color: '#24C55E  ', value: 8, icon: 'pi pi-folder' },
         { label: 'Applications', color: '#3C82F6', value: 24, icon: 'pi pi-discord' },
         { label: 'Mails', color: '#F59E0B', value: 12, icon: 'pi pi-envelope' },
@@ -37,23 +37,43 @@ export class TemplateDoc implements OnInit {
 
     code: Code = {
         basic: `
-<p-menu [model]="items"></p-menu>`,
+        <p-meterGroup [meterSegments]="meterSegments">
+        <ng-template pTemplate="legend" let-legend>
+            <div style=" margin: 4px 0">
+                <i [style.color]="legend.color" style="display: inline-block; margin-right: 10px; font-weight:bold" class="{{ legend.icon }}"></i>
+                <span [style.color]="legend.color">{{ legend.label }} ({{ legend.value }}%) </span>
+            </div>
+        </ng-template>
+    </p-meterGroup>`,
 
         html: `
-<div class="card flex justify-content-center">
-    <p-menu [model]="items"></p-menu>
-</div>`,
+    <div class="card flex justify-content-center">
+    <p-meterGroup [meterSegments]="meterSegments">
+    <ng-template pTemplate="legend" let-legend>
+        <div style=" margin: 4px 0">
+            <i [style.color]="legend.color" style="display: inline-block; margin-right: 10px; font-weight:bold" class="{{ legend.icon }}"></i>
+            <span [style.color]="legend.color">{{ legend.label }} ({{ legend.value }}%) </span>
+        </div>
+    </ng-template>
+    </p-meterGroup>
+    </div>`,
 
         typescript: `
 import { Component, OnInit } from '@angular/core';
-
+import { Segment } from 'primeng/metergroup';
 
 @Component({
     selector: 'meter-group-template-demo',
     templateUrl: './meter-group-template-demo.html'
 })
 export class MeterGroupTemplateDemo implements OnInit {
-  
+    
+    meterSegments : Segment[] = [
+        { label: 'Folders', color: '#24C55E  ', value: 8, icon: 'pi pi-folder' },
+        { label: 'Applications', color: '#3C82F6', value: 24, icon: 'pi pi-discord' },
+        { label: 'Mails', color: '#F59E0B', value: 12, icon: 'pi pi-envelope' },
+        { label: 'Images', color: '#EF4444', value: 42, icon: 'pi pi-images' }
+    ];
 
     ngOnInit() {
      
