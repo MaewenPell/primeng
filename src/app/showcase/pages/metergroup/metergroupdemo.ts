@@ -4,6 +4,7 @@ import { BasicDoc } from '../../doc/metergroup/basicdoc';
 import { AccessibilityDoc } from '../../doc/metergroup/accessibilitydoc';
 import { MultipleDoc } from '../../doc/metergroup/multipledoc';
 import { TemplateDoc } from '../../doc/metergroup/templatedoc';
+import { StyleDoc } from '../../doc/metergroup/styledoc';
 @Component({
     templateUrl: './metergroupdemo.html',
 })
@@ -30,10 +31,14 @@ export class MeterGroupDemo {
             component: TemplateDoc
         },
         {
+            id: 'style',
+            label: 'Styling of MeterGroup',
+            component: StyleDoc
+        },
+        {
             id: 'accessibility',
             label: 'Accessibility',
             component: AccessibilityDoc
         }
-        
     ];
 }

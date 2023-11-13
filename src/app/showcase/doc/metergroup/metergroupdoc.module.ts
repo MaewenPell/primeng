@@ -8,9 +8,10 @@ import { AccessibilityDoc } from './accessibilitydoc';
 import { MeterGroupModule } from 'primeng/metergroup';
 import { MultipleDoc } from './multipledoc';
 import { TemplateDoc } from './templatedoc';
+import { StyleDoc } from './styledoc';
 @NgModule({
     imports: [CommonModule, AppCodeModule, AppDocModule, MeterGroupModule],
-    declarations: [BasicDoc, AccessibilityDoc, ImportDoc, MultipleDoc, TemplateDoc],
+    declarations: [BasicDoc, AccessibilityDoc, ImportDoc, MultipleDoc, TemplateDoc, StyleDoc],
     exports: [AppDocModule]
 })
 export class MeterGroupDocModule {}
