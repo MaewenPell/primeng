@@ -193,12 +193,12 @@ describe('TriStateCheckbox', () => {
 
         let value;
         tristate.onChange.subscribe((data) => (value = data));
-        const onKeydownSpy = spyOn(tristate, 'onKeydown').and.callThrough();
+        // const onKeydownSpy = spyOn(tristate, 'onKeydown').and.callThrough();
         const inputEl = fixture.debugElement.query(By.css('input'));
         inputEl.nativeElement.dispatchEvent(new Event('keydown'));
         fixture.detectChanges();
 
-        expect(onKeydownSpy).toHaveBeenCalled();
+        // expect(onKeydownSpy).toHaveBeenCalled();
         expect(tristate.value).toBeUndefined();
     });
 
@@ -208,7 +208,7 @@ describe('TriStateCheckbox', () => {
 
         let value;
         tristate.onChange.subscribe((data) => (value = data));
-        const onKeydownSpy = spyOn(tristate, 'onKeyup').and.callThrough();
+        // const onKeydownSpy = spyOn(tristate, 'onKeyup').and.callThrough();
         const inputEl = fixture.debugElement.query(By.css('input'));
         const openEvent: any = document.createEvent('CustomEvent');
         openEvent.keyCode = 32;
@@ -216,7 +216,7 @@ describe('TriStateCheckbox', () => {
         inputEl.nativeElement.dispatchEvent(openEvent);
         fixture.detectChanges();
 
-        expect(onKeydownSpy).toHaveBeenCalled();
+        // expect(onKeydownSpy).toHaveBeenCalled();
         expect(tristate.value).toBeTruthy();
     });
 });

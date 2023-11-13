@@ -335,7 +335,7 @@
     "animateonscroll": {
         "components": {
             "AnimateOnScroll": {
-                "description": "Animate manages PrimeFlex CSS classes declaratively to during enter/leave animations on scroll or on page load.",
+                "description": "AnimateOnScroll is used to apply animations to elements when entering or leaving the viewport during scrolling.",
                 "props": {
                     "description": "Defines the input properties of the component.",
                     "values": [
@@ -7769,7 +7769,7 @@
                             "name": "defaultFocus",
                             "optional": false,
                             "readonly": false,
-                            "type": "\"close\" | \"reject\" | \"accept\"",
+                            "type": "\"none\" | \"close\" | \"reject\" | \"accept\"",
                             "default": "accept",
                             "description": "Element to receive the focus when the dialog gets visible."
                         },
@@ -13707,7 +13707,7 @@
                             "optional": false,
                             "readonly": false,
                             "type": "boolean",
-                            "default": "true",
+                            "default": "false",
                             "description": "Defines how multiple items can be selected, when true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically."
                         },
                         {
@@ -13946,7 +13946,7 @@
                             },
                             {
                                 "name": "option",
-                                "optional": false,
+                                "optional": true,
                                 "readonly": false,
                                 "type": "any",
                                 "description": "Selected option"
@@ -13973,7 +13973,7 @@
                             },
                             {
                                 "name": "option",
-                                "optional": false,
+                                "optional": true,
                                 "readonly": false,
                                 "type": "any",
                                 "description": "Selected option"
@@ -14633,6 +14633,169 @@
                         "name": "content",
                         "parameters": [],
                         "description": "Custom template of content."
+                    }
+                ]
+            }
+        }
+    },
+    "metergroup": {
+        "components": {
+            "MeterGroup": {
+                "description": "MeterGroup displays a gauge meter that fills or depletes.",
+                "props": {
+                    "description": "Defines the input properties of the component.",
+                    "values": [
+                        {
+                            "name": "value",
+                            "optional": false,
+                            "readonly": false,
+                            "type": "number",
+                            "description": "Value of the meter."
+                        },
+                        {
+                            "name": "label",
+                            "optional": false,
+                            "readonly": false,
+                            "type": "string",
+                            "description": "Label of the meter."
+                        },
+                        {
+                            "name": "color",
+                            "optional": false,
+                            "readonly": false,
+                            "type": "string",
+                            "description": "Color of the meter."
+                        },
+                        {
+                            "name": "emptySpaceBgColor",
+                            "optional": false,
+                            "readonly": false,
+                            "type": "string",
+                            "default": "#334155",
+                            "description": "Background color of the empty space."
+                        },
+                        {
+                            "name": "meterSegments",
+                            "optional": false,
+                            "readonly": false,
+                            "type": "Segment[]",
+                            "description": "Meter segments to be displayed."
+                        },
+                        {
+                            "name": "min",
+                            "optional": false,
+                            "readonly": false,
+                            "type": "number",
+                            "default": "0",
+                            "description": "Minimum value of the meter."
+                        },
+                        {
+                            "name": "max",
+                            "optional": false,
+                            "readonly": false,
+                            "type": "number",
+                            "default": "100",
+                            "description": "Maximum value of the meter."
+                        },
+                        {
+                            "name": "fixedPercentageValue",
+                            "optional": false,
+                            "readonly": false,
+                            "type": "number",
+                            "default": "0",
+                            "description": "Specifies the number of decimal places to display in the percentage value."
+                        }
+                    ]
+                },
+                "emits": {
+                    "description": "Defines emit that determine the behavior of the component based on a given condition or report the actions that the component takes.",
+                    "values": [
+                        {
+                            "name": "legendClicked",
+                            "parameters": [
+                                {
+                                    "name": "event",
+                                    "type": "MeterGroupLegendClickEvent"
+                                }
+                            ],
+                            "description": "Event emitted when a legend within the MeterGroup is clicked."
+                        }
+                    ]
+                }
+            }
+        },
+        "interfaces": {
+            "components": {},
+            "events": {
+                "description": "Defines the custom events used by the component's emitters.",
+                "values": [
+                    {
+                        "name": "MeterGroupLegendClickEvent",
+                        "description": "Legend click event.",
+                        "props": [
+                            {
+                                "name": "originalEvent",
+                                "optional": false,
+                                "readonly": false,
+                                "type": "Event",
+                                "description": "Browser event."
+                            },
+                            {
+                                "name": "segment",
+                                "optional": false,
+                                "readonly": false,
+                                "type": "Segment",
+                                "description": "Clicked value."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "templates": {
+                "description": "Defines the templates used by the component.",
+                "values": [
+                    {
+                        "parent": "metergroup",
+                        "name": "legend",
+                        "parameters": [
+                            {
+                                "name": "context",
+                                "type": "{\n  \t $implicit: Segment, // Legend.\n  }"
+                            }
+                        ],
+                        "description": "Custom legend template."
+                    }
+                ]
+            },
+            "interfaces": {
+                "description": "Defines the custom interfaces used by the module.",
+                "values": [
+                    {
+                        "name": "Segment",
+                        "description": "MeterGroup segment item.",
+                        "props": [
+                            {
+                                "name": "label",
+                                "optional": false,
+                                "readonly": false,
+                                "type": "string",
+                                "description": "Label of the segment."
+                            },
+                            {
+                                "name": "color",
+                                "optional": false,
+                                "readonly": false,
+                                "type": "string",
+                                "description": "Color of the segment."
+                            },
+                            {
+                                "name": "value",
+                                "optional": false,
+                                "readonly": false,
+                                "type": "number",
+                                "description": "Value of the segment."
+                            }
+                        ]
                     }
                 ]
             }
@@ -23501,8 +23664,7 @@
                             "name": "position",
                             "optional": false,
                             "readonly": false,
-                            "type": "\"center\" | \"top-right\" | \"top-left\" | \"bottom-left\" | \"bottom-right\" | \"top-center\" | \"bottom-center\"",
-                            "default": "top-right",
+                            "type": "ToastPositionType",
                             "description": "Position of the toast in viewport."
                         },
                         {
